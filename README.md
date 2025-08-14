@@ -1,6 +1,6 @@
 > Features implemented
 
-Purpose: Display a list of organizations fetched from a public API in a styled, responsive layout.
+Purpose: Display a list of users fetched from a public API in a styled, responsive layout in a self hosted Odoo instance using a custom module
 
 Tech in Play:
     - Tailwind CSS (custom styling)
