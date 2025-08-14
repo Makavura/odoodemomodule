@@ -1,0 +1,106 @@
+<odoo>
+  <template id="organization_template" name="Organization Directory">
+    <t t-call="website.layout">
+      <xpath expr="." position="inside">
+        <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </xpath>
+      <div class="container mx-auto p-6 bg-gray-200 p-4 sm:p-8">
+        <div class="text-center mb-12 p-16 rounded-2xl shadow-xl bg-cover bg-center relative">
+          <div class="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
+          <div class="relative z-10 text-white">
+            <h1 class="text-5xl font-extrabold mb-4 tracking-tight">Meet Our Team of Creatives,
+              Designers &amp; Problem Solvers</h1>
+            <p class="text-xl max-w-3xl mx-auto">
+              Explore our directory of dedicated professionals, learn about their roles, and connect
+              with them. Our team is the heart of our organization.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <t t-foreach="users" t-as="user">
+            <div
+              class="max-w-xl mx-auto my-10 bg-white rounded-2xl shadow-xl overflow-hidden md:max-w-3xl">
+              <div class="md:flex">
+                <div class="p-8 w-full">
+                  <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex-shrink-0">
+                      <img class="h-16 w-16 rounded-full"
+                        t-attf-src="https://api.dicebear.com/9.x/lorelei/svg?flip=true&amp;seed={{ user.get('name') }}"
+                        t-att-alt="user.get('name') + ' Avatar'" />
+                    </div>
+                    <div>
+                      <h1 class="text-3xl font-extrabold text-gray-900">
+                        <t t-esc="user.get('name')" />
+                      </h1>
+                      <p class="mt-1 text-lg text-gray-600"> @<t t-esc="user.get('username')" />
+                      </p>
+                    </div>
+                  </div>
+
+                  <hr class="my-6 border-gray-200" />
+
+                  <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-800">Contact Information</h2>
+                    <div class="flex items-center text-gray-600">
+                      <i class="fas fa-envelope text-indigo-500 w-6" />
+                      <span class="ml-3">
+                        <t t-esc="user.get('email')" />
+                      </span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                      <i class="fas fa-phone-alt text-indigo-500 w-6" />
+                      <span class="ml-3">
+                        <t t-esc="user.get('phone')" />
+                      </span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                      <i class="fas fa-globe text-indigo-500 w-6" />
+                      <a t-attf-href="http://{{ user.get('website') }}"
+                        class="ml-3 text-indigo-600 hover:underline">
+                        <t t-esc="user.get('website')" />
+                      </a>
+                    </div>
+                  </div>
+
+                  <hr class="my-6 border-gray-200" />
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h2 class="text-xl font-bold text-gray-800">Address</h2>
+                      <div class="mt-4 text-gray-600">
+                        <p>
+                          <t t-esc="user.get('address', {}).get('street')" />, <t
+                            t-esc="user.get('address', {}).get('suite')" />
+                        </p>
+                        <p>
+                          <t t-esc="user.get('address', {}).get('city')" />, <t
+                            t-esc="user.get('address', {}).get('zipcode')" />
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h2 class="text-xl font-bold text-gray-800">Company</h2>
+                      <div class="mt-4 text-gray-600">
+                        <p class="font-bold">
+                          <t t-esc="user.get('company', {}).get('name')" />
+                        </p>
+                        <p class="italic"> "<t t-esc="user.get('company', {}).get('catchPhrase')" />
+                          " </p>
+                        <p>
+                          <t t-esc="user.get('company', {}).get('bs')" />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </t>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>
