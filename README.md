@@ -1,3 +1,8 @@
+> UI:
+
+<img width="1339" height="920" alt="image" src="https://github.com/user-attachments/assets/43703bdb-28e1-413d-a604-dfdf65315357" />
+
+
 > Features implemented
 
 Purpose: Display a list of users fetched from a public API in a styled, responsive layout in a self hosted Odoo instance using a custom module
