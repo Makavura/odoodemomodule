@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    networks:
+      - odoo-net
+
+  odoo:
+    image: odoo:16
+    container_name: odoo-dev
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+     - odoo_data:/var/lib/odoo
+      - ./custom-addons:/mnt/custom-addons
+    command: [ "--dev=all", "-i base", "--addons-path=/mnt/custom-addons" ]
+    networks:
+      - odoo-net
+
+volumes:
+  odoo-db-data:
+
+
+networks:
+  odoo-net:
